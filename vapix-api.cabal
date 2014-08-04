@@ -14,8 +14,15 @@ Library
   HS-Source-Dirs:       src
   GHC-Options:          -Wall
   Exposed-Modules:      Network.Vapix
+                      , Network.Vapix.Parser
+                      , Network.Vapix.Types
   Other-Modules:        Network.Vapix.Internal
   Build-Depends:        base >= 4 && < 5
+                      , wreq
+                      , attoparsec
+                      , time
+                      , xml2json
+                      , aeson
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
@@ -26,6 +33,11 @@ Test-Suite spec
   Main-Is:              Spec.hs
   Build-Depends:        base
                       , hspec
+                      , wreq
+                      , attoparsec
+                      , time
+                      , xml2json
+                      , aeson
 
 Source-Repository head
   Type:                 git
