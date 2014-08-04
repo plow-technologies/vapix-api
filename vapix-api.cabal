@@ -27,6 +27,7 @@ Library
                       , bytestring
                       , old-locale
                       , text
+                      , url
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
@@ -46,6 +47,7 @@ Test-Suite spec
                       , bytestring
                       , old-locale
                       , text
+                      , url
 
 Source-Repository head
   Type:                 git

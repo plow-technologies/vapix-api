@@ -11,6 +11,8 @@ import Data.Text
 data AxisLogin = AxisLogin {
   axisUsername :: String
 , axisPassword :: String
+, axisHost :: String
+, axisPort :: Int
 } deriving (Show, Eq)
 
 data VapixXML = VapixXML {
