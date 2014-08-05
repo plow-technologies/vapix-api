@@ -8,6 +8,7 @@ import Data.Time.Format
 import System.Locale
 import Data.Text
 
+-- | The username, password, host (just IP/host name "192.168.1.7" or "somewhere.example.com"), and the port to connect through
 data AxisLogin = AxisLogin {
   axisUsername :: String
 , axisPassword :: String
@@ -29,6 +30,7 @@ data VapixRecordingsAttr = VapixRecordingsAttr {
   vapixRecordingsAttr :: VapixRecording
 } deriving (Eq, Show)
 
+-- | A specific recording. All are data types from the vapix XML
 data VapixRecording = VapixRecording {
   recordingDisk  :: String
 , recordingId    :: String
