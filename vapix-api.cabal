@@ -4,8 +4,8 @@ Author:                 Kevin Cotrone <kevincotrone@gmail.com>
 Maintainer:             Kevin Cotrone <kevincotrone@gmail.com>
 License:                BSD3
 License-File:           LICENSE
--- Synopsis:               
--- Description:            
+Synopsis:               Haskell library for Apix camera API
+Description:            Simple implementation of the vapix api for axis cameras
 Cabal-Version:          >= 1.10
 Build-Type:             Simple
 
@@ -51,4 +51,4 @@ Test-Suite spec
 
 Source-Repository head
   Type:                 git
---  Location:             
+  Location:             git@github.com:plow-technologies/vapix-api.git
