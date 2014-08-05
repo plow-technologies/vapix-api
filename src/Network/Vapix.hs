@@ -26,7 +26,7 @@ listRecordings login = do
   where opts = defaults & auth .~ fromLogin login
         url :: String
         url = exportURL $ addParams (buildURL urlHost "axis-cgi/record/list.cgi") [("startresultnumber", show 0), ("recordingid", "all")]
-        urlHost = buildHost (axisHost login) (Just . fromIntegral . axisPort $ login)
+        urlHost = buildAxisHost login
 
 --buildRecordingURL :: AxisLogin
 
@@ -34,7 +34,9 @@ fetchRecording :: AxisLogin -> VapixRecording -> String
 fetchRecording login vpr = url $ recordingId vpr 
   where opts = defaults & auth .~ fromLogin login
         url recId = exportURL (addParams (buildURL urlHost "axis-cgi/record/download.cgi") [("recordingid", recId)])
-        urlHost = buildHost (axisHost login) (Just . fromIntegral . axisPort $ login)
+        urlHost = buildAxisHost login
+
+
 
 fromLogin :: AxisLogin -> Maybe Auth
 fromLogin (AxisLogin user pass h p) = basicAuth (BSC.pack user) (BSC.pack pass)
@@ -44,6 +46,8 @@ fromLogin (AxisLogin user pass h p) = basicAuth (BSC.pack user) (BSC.pack pass)
 
 --asXML resp = resp ^? responseBody . parseXML
 
+buildAxisHost :: AxisLogin -> Host
+buildAxisHost login = buildHost (axisHost login) (Just . fromIntegral . axisPort $ login)
 
 buildHost :: String -> Maybe Integer -> Host
 buildHost h p = Host (HTTP False) h p
