@@ -1,5 +1,5 @@
 Name:                   vapix-api
-Version:                0.0.0
+Version:                0.0.1
 Author:                 Kevin Cotrone <kevincotrone@gmail.com>
 Maintainer:             Kevin Cotrone <kevincotrone@gmail.com>
 License:                BSD3
@@ -21,7 +21,7 @@ Library
                       , wreq
                       , attoparsec
                       , time
-                      , xml2json
+                      , xml2json >= 0.3.0.0.7569
                       , aeson
                       , lens
                       , bytestring
