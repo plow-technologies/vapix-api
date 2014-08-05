@@ -12,7 +12,6 @@ import           Text.XML.ToJSON
 -- | list all current recordings on a camera/device
 listRecordings :: AxisLogin -> IO [VapixRecording]
 listRecordings login = do
-  Prelude.putStrLn url
   resp <- getWith opts url
   views responseBody (\body -> (parseXML body) >>= (return . unVapixInfo)) resp
   where opts = defaults & auth .~ fromLogin login
