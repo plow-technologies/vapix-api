@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, FlexibleInstances #-}
+{-# LANGUAGE OverloadedStrings, FlexibleInstances,RecordWildCards #-}
 module Network.Vapix.Types where
 
 import           Control.Applicative
@@ -46,13 +46,18 @@ unVapixRecordings :: VapixRecordings -> [VapixRecordingsAttr]
 unVapixRecordings (VapixRecordingsList xs) = xs
 unVapixRecordings (VapixRecordingsSingle x) = [x]
 
-newtype VapixDate = VapixDate { unVapixDate :: UTCTime } deriving (Eq, Show)
+newtype VapixDate = VapixDate { unVapixDate :: UTCTime } deriving (Eq,Ord, Show)
 
 instance FromJSON VapixDate where
   parseJSON (String s) = case unpack s of
                           "" -> fail "Unable to parse empty string"
                           unS -> return $ VapixDate $ readTime defaultTimeLocale "%Y-%m-%dT%H:%M:%S%QZ" unS
   parseJSON _ = fail "Rule: Expecting VapixStartDate received other"
+
+instance ToJSON VapixDate where
+  toJSON (VapixDate {..}) = object [
+                               "unVapixDate" .= unVapixDate
+                               ]
 
 instance FromJSON (Maybe VapixDate) where
   parseJSON (String s) = case unpack s of
@@ -84,3 +89,12 @@ instance FromJSON VapixRecording where
                                            <*> tObj .: "stoptime"
                                            <*> tObj .: "recordingtype"
   parseJSON _ = fail "Rule: Expecting VapixRecording received other"
+
+instance ToJSON VapixRecording where
+  toJSON (VapixRecording {..}) = object [
+                                    "recordingDisk" .= recordingDisk
+                                   ,"recordingId" .= recordingId
+                                   ,"recordingStart" .= recordingStart
+                                   ,"recordingEnd" .= recordingEnd
+                                   ,"recordingType" .= recordingType
+                                    ]
