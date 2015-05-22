@@ -76,6 +76,7 @@ instance FromJSON VapixRecordingsWrapper where
  
 instance FromJSON VapixRecordingsAttr where
   parseJSON (Object tObj) = VapixRecordingsAttr <$> tObj .: "__attributes"
+  parseJSON _ = fail "Rule: Expecting VapixRecording attributes, received other"
 
 instance FromJSON VapixRecordings where
   parseJSON (Object tObj) = (VapixRecordingsList <$> tObj .: "recording") <|> (VapixRecordingsSingle <$> tObj .: "recording")

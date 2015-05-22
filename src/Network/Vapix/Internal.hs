@@ -12,7 +12,7 @@ import           Network.URL
 import           Network.Vapix.Types
 import           Network.Wreq
 
-fromLogin :: AxisLogin -> Maybe Auth
+fromLogin :: AxisLogin -> Auth
 fromLogin (AxisLogin user pass _ _) = basicAuth (BSC.pack user) (BSC.pack pass)
 
 buildAxisHost :: AxisLogin -> Host

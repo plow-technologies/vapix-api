@@ -14,7 +14,7 @@ listRecordings :: AxisLogin -> IO [VapixRecording]
 listRecordings login = do
   resp <- getWith opts url
   views responseBody (\body -> (parseXML body) >>= (return . unVapixInfo)) resp
-  where opts = defaults & auth .~ fromLogin login
+  where opts = defaults & auth .~ (Just $ fromLogin login)
         url :: String
         url = exportURL $ addParams (buildURL urlHost "axis-cgi/record/list.cgi") [("startresultnumber", "0"), ("recordingid", "all")]
         urlHost = buildAxisHost login
