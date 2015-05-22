@@ -28,6 +28,7 @@ Library
                       , old-locale
                       , text
                       , url
+                      , exceptions
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
